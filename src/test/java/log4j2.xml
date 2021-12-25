@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration name="ConfigTest" status="WARN" monitorInterval="5">
+	<Properties>
+		<Property name="basePath">./logs</Property>
+	</Properties>
+
+	<Appenders>
+		<RollingFile name="RollingFile" fileName="${basePath}/prints.log" filePattern="${basePath}/print-%d{dd-MM-yyyy}.log" ignoreExceptions="false">
+			<PatternLayout>
+				<Pattern>"%d{dd-MM-yyy HH:mm:ss:SSS} [%t] %-5level %logger{36} - %msg%n"</Pattern>
+			</PatternLayout>
+			<SizeBasedTriggeringPolicy size="50 MB" />
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{dd-MM-yyy HH:mm:ss:SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Root level="trace">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
+		</Root>
+	</Loggers>
+</Configuration>
